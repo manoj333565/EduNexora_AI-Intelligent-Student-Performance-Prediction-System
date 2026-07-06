@@ -8,3 +8,4 @@ seaborn
 streamlit
 # sqlite3-binary
 joblib
+werkzeug
