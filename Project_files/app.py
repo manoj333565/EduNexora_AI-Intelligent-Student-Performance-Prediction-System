@@ -5,6 +5,7 @@ import joblib
 import matplotlib.pyplot as plt
 import shap
 import json
+from pathlib import Path
 from database import validate_user, add_user, save_prediction, get_all_predictions
 
 # ------------------- Utilities -------------------
@@ -63,11 +64,11 @@ def generate_explanation(pred_prob, prediction, input_data):
             msg += "Positive signals: " + ", ".join(reasons_positive) + "."
 
     return msg
-
+BASE_DIR = Path(__file__).resolve().parent
 # ------------------- Load Model -------------------
 try:
-    model = joblib.load("model.pkl")
-    columns = joblib.load("model_columns.pkl")
+    model = joblib.load(BASE_DIR / "model.pkl")
+    columns = joblib.load(BASE_DIR / "model_columns.pkl")
 except Exception as e:
     st.error(f"❌ Could not load model or columns. Error: {e}")
     st.stop()
